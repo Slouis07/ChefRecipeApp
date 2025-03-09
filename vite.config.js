@@ -8,7 +8,6 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ["@huggingface/inference", "react-markdown"],  // Externalize these packages
     },
     commonjsOptions: {
       include: [/node_modules/],  // Include node_modules to handle mixed module types
