@@ -1,0 +1,455 @@
+/* ===== Global Styles ===== */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    background-color: #FAFAF8;
+    min-height: 100vh;
+    color: #141413; /* Default text color for light mode */
+}
+
+body.dark-mode {
+    background-color: #141413;
+    color: #FAFAF8;
+}
+
+/* ===== Header ===== */
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 11px;
+    height: 80px;
+    background-color: white;
+    transition: background-color 0.2s ease-in-out;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+    font-family: Roboto, sans-serif;
+}
+
+body.dark-mode header {
+    background-color: #333;
+    color: #FAFAF8;
+}
+
+header > img {
+    width: 50px;
+    border-radius: 50%;
+    height: 50px;
+    margin-top: -22px;
+    transition: filter 0.2s ease-in-out;
+}
+
+body.dark-mode header > img {
+    filter: brightness(4.5); /* Brighten image in dark mode */
+}
+
+header > h1 {
+    font-weight: 400;
+}
+
+/* ===== Theme Toggle Button ===== */
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 8px 12px;
+    color: #141413; /* Default text color for light mode */
+    transition: color 0.2s ease-in-out;
+}
+
+body.dark-mode .theme-toggle {
+    color: #FFFFFF; /* White text in dark mode */
+}
+
+/* ===== Main Content ===== */
+main {
+    padding: 30px 30px 10px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px; /* Prevents it from getting too wide */
+    margin: 0 auto;
+}
+
+/* ===== Add Ingredient Form ===== */
+.add-ingredient-form {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    height: 38px;
+}
+
+.add-ingredient-form > input {
+    border-radius: 6px;
+    border: 1px solid #D1D5DB;
+    padding: 9px 13px;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    flex-grow: 1;
+    min-width: 150px;
+    max-width: 400px;
+}
+
+.add-ingredient-form > input::placeholder {
+    color: #999; /* Light gray placeholder text */
+    opacity: 0.5; /* Ensure full visibility */
+}
+
+.add-ingredient-form > button {
+    font-family: Inter, sans-serif;
+    border-radius: 6px;
+    border: none;
+    background-color: #141413;
+    color: #FAFAF8;
+    width: 150px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.add-ingredient-form > button::before {
+    content: "+";
+    margin-right: 5px;
+}
+
+body.dark-mode .add-ingredient-form > input {
+    background-color: #E5E4E2; /* Light gray */
+    color: #141413; /* Dark text */
+    border-color: #777; /* Slightly darker border */
+}
+
+body.dark-mode .add-ingredient-form > input::placeholder {
+    color: #555555; /* Darker placeholder text for visibility */
+}
+
+body.dark-mode .add-ingredient-form > button {
+    background-color: #E5E4E2; /* Light gray */
+    color: #141413; /* Dark text for contrast */
+}
+
+/* ===== Loading Spinner ===== */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+    color: #6B7280;
+    font-size: 1.1rem;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(209, 117, 87, 0.3);
+    border-radius: 50%;
+    border-top-color: #D17557;
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+body.dark-mode .loading-container {
+    color: #E5E4E2;
+}
+
+body.dark-mode .loading-spinner {
+    border-color: rgba(229, 228, 226, 0.3);
+    border-top-color: #E5E4E2;
+}
+
+/* Button loading state */
+.get-recipe-container button.loading {
+    position: relative;
+    background-color: #D17557;
+    color: transparent;
+}
+
+.get-recipe-container button.loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 3px solid transparent;
+    border-top-color: #FAFAF8;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+/* Disabled buttons during loading */
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Error message enhancement */
+.error-message {
+    text-align: center;
+    padding: 10px;
+}
+
+/* ===== Ingredients List ===== */
+ul.ingredients-list {
+    margin-bottom: 48px;
+}
+
+ul.ingredients-list > li {
+    line-height: 28px;
+    margin-left: auto;  
+    margin-right: auto; 
+    max-width: 550px;  
+    width: auto;  /* Prevents stretching */
+    display: block;
+    color: #475467;
+}
+
+body.dark-mode ul.ingredients-list > li {
+    color: #E5E4E2; /* Light text color for dark mode */
+}
+
+
+/* ===== Ingredients List Item Styling ===== */
+.ingredients-list .ingredient-item {
+    position: relative;
+    padding: 5px 10px;
+    margin: 5px auto;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    max-width: 550px;
+    transition: background-color 0.2s ease;
+}
+
+.ingredients-list .ingredient-item:hover {
+    background-color: #F3F4F6;
+}
+
+body.dark-mode .ingredients-list .ingredient-item:hover {
+    background-color: #2A2A2A;
+}
+
+
+.ingredient-text {
+    color: #475467;
+    margin-left: 5px;
+}
+
+body.dark-mode .ingredient-text {
+    color: #E5E4E2;
+}
+
+/* Delete ingredient button */
+.delete-ingredient {
+    opacity: 0;
+    border: none;
+    background: none;
+    color: #D17557;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 5px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ingredient-item:hover .delete-ingredient {
+    opacity: 1;
+}
+
+.delete-ingredient:hover {
+    transform: scale(1.2);
+}
+
+body.dark-mode .delete-ingredient {
+    color: #D17557;
+}
+
+/* List actions container */
+.list-actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Clear all button */
+.clear-all-btn {
+    background: none;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    color: #6B7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.clear-all-btn:hover {
+    background-color: #F3F4F6;
+    color: #4B5563;
+}
+
+body.dark-mode .clear-all-btn {
+    border-color: #4B5563;
+    color: #E5E4E2;
+}
+
+body.dark-mode .clear-all-btn:hover {
+    background-color: #333;
+}
+
+/* Disabled get recipe button */
+.get-recipe-container button:disabled {
+    background: #9CA3AF;
+    cursor: not-allowed;
+}
+
+/* ===== Get Recipe Container ===== */
+.get-recipe-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    background: #F0EFEB;
+    padding: 10px 28px;
+    transition: background-color 0.2s ease-in-out, color 0.3s ease-in-out;
+}
+
+.get-recipe-container h3 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.get-recipe-container p {
+    color: #6B7280;
+    font-size: 0.875rem;
+    line-height: 20px;
+}
+
+.get-recipe-container button {
+    border: none;
+    border-radius: 6px;
+    background: #D17557;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    color: #FAFAF8;
+    padding: 9px 17px;
+    font-family: Inter, sans-serif;
+    font-size: 0.875rem;
+    cursor: pointer;
+    width: 120px;
+    height: 50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .get-recipe-container {
+    background: #333; /* Dark background */
+    color: #FAFAF8; /* Light text */
+}
+
+body.dark-mode .get-recipe-container p {
+    color: #E5E4E2; /* Slightly lighter gray for contrast */
+}
+
+/* ===== Suggested Recipe Container ===== */
+.suggested-recipe-container {
+    line-height: 28px;
+    font-size: 1.125rem;
+    font-weight: 400;
+}
+
+.suggested-recipe-container ul li, 
+.suggested-recipe-container ol li {
+    margin-bottom: 8px;
+}
+
+body.dark-mode .suggested-recipe-container {
+    color: #E5E4E2; /* Light text color for dark mode */
+}
+
+/* ===== Error Message ===== */
+.error-message {
+    color: #BEBFC5;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    margin-left: auto;  
+    margin-right: auto; 
+    max-width: 550px;  
+    width: auto;  /* Prevents stretching */
+    display: block;
+    font-family: Roboto, sans-serif;
+}
+
+/* ===== Footer ===== */
+.footer {
+    width: 100%;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6B7280;
+    padding: 20px 0;
+    background-color: #FAFAF8;
+    border-top: 1px solid #E5E7EB;
+}
+
+.footer a {
+    color: #6B7280; 
+    text-decoration: none;
+    font-weight: 300;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+body.dark-mode .footer {
+    background-color: #141413; /* Dark background */
+    color: #E5E4E2; /* Light text */
+    border-top: 1px solid #333; /* Darker border */
+}
+
+body.dark-mode .footer a {
+    color: #E5E4E2; /* Light links */
+}
+
+/* ===== Headings ===== */
+h2 {
+    font-family: Roboto, cursive;
+    font-weight: 400;
+    margin-left: auto;  
+    margin-right: auto; 
+    max-width: 550px;  
+    display: block;
+}
+
+.suggested-recipe-container h2 {
+    max-width: 100%;  
+    display: block;
+}
