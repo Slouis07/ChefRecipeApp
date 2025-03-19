@@ -2,6 +2,11 @@
 
  Transform random ingredients into delicious recipes with AI-powered culinary magic
 
+<p align="center">
+  <img src="![culinarygenieposter](https://github.com/user-attachments/assets/8a013506-c157-4409-96ff-8725d33e69e9)
+" alt="Culinary Genie App Screenshot" />
+</p>!
+
 
 ## Overview
 
